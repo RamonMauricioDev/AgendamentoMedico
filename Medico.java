@@ -1,10 +1,10 @@
 public class Medico extends Usuario{
     private String CRM;             //CRM
-    private float salary;           //Salário
+    private double salary;           //Salário
     private String especiality;     //Especialidade
 
 
-    public Medico(String name, String CPF, String CRM, float salary, String especiality) {
+    public Medico(String name, String CPF, String CRM, double salary, String especiality) {
         super(name, CPF);
         this.CRM = CRM;
         this.salary = salary;
