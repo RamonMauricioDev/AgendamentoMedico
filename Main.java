@@ -14,52 +14,40 @@ public class Main {
     public static final String CYAN = "\033[0;36m";
     public static final String WHITE = "\033[0;37m";
 
-    public static String createPatientName(){
+    public static Paciente createPatient() {
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Nome do paciente: ");
-        return scanner.nextLine();
-    }
+        String name = scanner.nextLine();
 
-    public static String createPatientCPF(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("CPF do paciente: ");
-        return scanner.nextLine();
-    }
+        String CPF = scanner.nextLine();
 
-    public static String createPatientTreatmentSpecialty(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Especialidade do tratamento: ");
-        return scanner.nextLine();
+        String treatmentEspeciality = scanner.nextLine();
+
+        return new Paciente(name, CPF, treatmentEspeciality);
     }
 
-    public static String createMedicName(){
+    public static Medico createMedic(){
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Nome do médico: ");
-        return scanner.nextLine();
-    }
+        String name = scanner.nextLine();
 
-    public static String createMedicCPF(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("CPF do médico: ");
-        return scanner.nextLine();
-    }
+        String CPF = scanner.nextLine();
 
-    public static String createMedicExpertise(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Especialidade: ");
-        return scanner.nextLine();
-    }
+        String medicEspeciality = scanner.nextLine();
 
-    public static String createMedicCRM(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("CRM: ");
-        return scanner.nextLine();
-    }
+        String CRM = scanner.nextLine();
 
-    public static double createMedicSalary(){
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Salário: ");
-        return scanner.nextDouble();
+        double salary = scanner.nextDouble();
+
+        return new Medico(name, CPF, CRM, salary, medicEspeciality);
     }
 
     public static void initTerminal(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList) {
@@ -73,12 +61,12 @@ public class Main {
 
         switch (command) {
             case 1:
-                pacientList.add(new Paciente(createPatientName(), createPatientCPF(), createPatientTreatmentSpecialty()));
+                pacientList.add(createPatient());
                 System.out.println("--------Paciente " + RED + pacientList.getLast().getName() +
                         RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
                 break;
             case 2:
-                medicList.add(new Medico(createMedicName(), createMedicCPF(), createMedicCRM(), createMedicSalary(), createMedicExpertise()));
+                medicList.add(createMedic());
                 System.out.println("--------Médico " + RED + medicList.getLast().getName() +
                         RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
                 break;
