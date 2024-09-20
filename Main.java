@@ -21,12 +21,17 @@ public class Main {
         String name = scanner.nextLine();
 
         System.out.print("CPF do paciente: ");
-        String CPF = scanner.nextLine();
+        long CPF = scanner.nextLong();
+
+        scanner.nextLine();
 
         System.out.print("Especialidade do tratamento: ");
         String treatmentEspeciality = scanner.nextLine();
 
-        return new Paciente(name, CPF, treatmentEspeciality);
+        System.out.print("Cartão do sus: ");
+        long cardSus = scanner.nextLong();
+
+        return new Paciente(name, CPF, treatmentEspeciality, cardSus);
     }
 
     public static Medico createMedic(){
@@ -36,7 +41,9 @@ public class Main {
         String name = scanner.nextLine();
 
         System.out.print("CPF do médico: ");
-        String CPF = scanner.nextLine();
+        long CPF = scanner.nextLong();
+
+        scanner.nextLine();
 
         System.out.print("Especialidade: ");
         String medicEspeciality = scanner.nextLine();
@@ -62,13 +69,13 @@ public class Main {
         switch (command) {
             case 1:
                 pacientList.add(createPatient());
-                System.out.println("--------Paciente " + RED + pacientList.getLast().getName() +
-                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
+                System.out.println("\n--------Paciente " + RED + pacientList.getLast().getName() +
+                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------\n");
                 break;
             case 2:
                 medicList.add(createMedic());
-                System.out.println("--------Médico " + RED + medicList.getLast().getName() +
-                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
+                System.out.println("\n--------Médico " + RED + medicList.getLast().getName() +
+                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------\n");
                 break;
             case 8:
                 System.out.println(pacientList);
@@ -84,17 +91,6 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Paciente> pacientList = new ArrayList<>();    //Lista de pacientes
         ArrayList<Medico> medicList = new ArrayList<>();        //Lista de médicos
-
-        //Cartões do sus
-        CartaoSus PauloCartao = new CartaoSus("Paulo", 2004,
-                9, 3, 2011, 11, 9, "M",
-                "Maceió", "AL", 89200209123758L);
-
-        //Adicionará um novo paciente pelo terminal
-        //pacientList.add(new Paciente(createPatientName(), createPatientCPF(), createPatientTreatmentSpecialty()));
-        
-        //Adicionará um novo médico pelo terminal
-        //medicList.add(new Medico(createMedicName(), createMedicCPF(), createMedicCRM(), createMedicSalary(), createMedicExpertise()));
 
         //Terminal
         System.out.println("-----Bem vindo ao terminal de " + BLUE + "Agendamento médico " + YELLOW + "v1.0.0" + RESET + "-----");

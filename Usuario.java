@@ -1,8 +1,8 @@
 public abstract class Usuario {
     private String name;    //Nome do usuário
-    private String CPF;     //CPF
+    private long   CPF;       //CPF
 
-    public Usuario(String name, String CPF){
+    public Usuario(String name, long CPF){
         this.name = name;
         this.CPF = CPF;
     }
@@ -11,7 +11,7 @@ public abstract class Usuario {
         return name;
     }
 
-    public String getCPF() {
+    public long getCPF() {
         return CPF;
     }
 }
