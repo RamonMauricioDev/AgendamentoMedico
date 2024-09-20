@@ -3,6 +3,17 @@ import java.util.Scanner;
 
 public class Main {
 
+    // ANSI escape codes for colors
+    public static final String RESET = "\033[0m";  // Reset to default color
+    public static final String BLACK = "\033[0;30m";
+    public static final String RED = "\033[0;31m";
+    public static final String GREEN = "\033[0;32m";
+    public static final String YELLOW = "\033[0;33m";
+    public static final String BLUE = "\033[0;34m";
+    public static final String PURPLE = "\033[0;35m";
+    public static final String CYAN = "\033[0;36m";
+    public static final String WHITE = "\033[0;37m";
+
     public static String createPatientName(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nome do paciente: ");
@@ -52,10 +63,13 @@ public class Main {
     }
 
     public static void initTerminal(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList) {
-        System.out.println("-------Paciente--------");
-        System.out.println(pacientList);
-        System.out.println("-------Medico--------");
-        System.out.println(medicList);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Adicionar um novo paciente no banco de dados: " + RED + "1" + RESET);
+        System.out.println("Adicionar um novo médico no banco de dados: " + RED + "2" + RESET);
+        System.out.println("Ver lista de pacientes do banco de dados: " + RED + "8" + RESET);
+        System.out.println("Ver lista de médicos do banco de dados: " + RED + "9" + RESET);
+        System.out.print("Digite o numero do comando correspondente: ");
+        int command = scanner.nextInt();
     }
 
     public static void main(String[] args) {
@@ -69,11 +83,13 @@ public class Main {
 
         //Adicionará um novo paciente pelo terminal
         //pacientList.add(new Paciente(createPatientName(), createPatientCPF(), createPatientTreatmentSpecialty()));
-
+        
         //Adicionará um novo médico pelo terminal
         //medicList.add(new Medico(createMedicName(), createMedicCPF(), createMedicCRM(), createMedicSalary(), createMedicExpertise()));
 
         //Terminal
+        System.out.println("-----Bem vindo ao terminal de " + BLUE + "Agendamento médico " + YELLOW + "v1.0.0" + RESET + "-----");
+        System.out.println("O que deseja fazer ?");
         initTerminal(pacientList, medicList);
     }
 }
