@@ -1,10 +1,10 @@
 public class Medico extends Usuario{
-    private String CRM;             //CRM
+    private String CRM;              //CRM
     private double salary;           //Salário
-    private String especiality;     //Especialidade
+    private String especiality;      //Especialidade
 
 
-    public Medico(String name, String CPF, String CRM, double salary, String especiality) {
+    public Medico(String name, long CPF, String CRM, double salary, String especiality) {
         super(name, CPF);
         this.CRM = CRM;
         this.salary = salary;
@@ -12,7 +12,7 @@ public class Medico extends Usuario{
     }
 
     public String toString() {
-        return "Nome: "+getName() + "\nCPF: "+getCPF() +"\nCRM: "+CRM
-                +"\nSalário: "+salary + "\nEspecialidade: "+especiality;
+        return "Nome: "+getName() + " CPF: "+getCPF() +" CRM: "+CRM
+                +" Salário: "+salary + " Especialidade: "+especiality;
     }
 }
