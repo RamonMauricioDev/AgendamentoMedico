@@ -70,6 +70,27 @@ public class Main {
         System.out.println("Ver lista de médicos do banco de dados: " + RED + "9" + RESET);
         System.out.print("Digite o numero do comando correspondente: ");
         int command = scanner.nextInt();
+
+        switch (command) {
+            case 1:
+                pacientList.add(new Paciente(createPatientName(), createPatientCPF(), createPatientTreatmentSpecialty()));
+                System.out.println("--------Paciente " + RED + pacientList.getLast().getName() +
+                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
+                break;
+            case 2:
+                medicList.add(new Medico(createMedicName(), createMedicCPF(), createMedicCRM(), createMedicSalary(), createMedicExpertise()));
+                System.out.println("--------Médico " + RED + medicList.getLast().getName() +
+                        RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------");
+                break;
+            case 8:
+                System.out.println(pacientList);
+                break;
+            case 9:
+                System.out.println(medicList);
+                break;
+        }
+
+        initTerminal(pacientList, medicList);
     }
 
     public static void main(String[] args) {

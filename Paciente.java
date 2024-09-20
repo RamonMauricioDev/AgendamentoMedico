@@ -7,7 +7,7 @@ public class Paciente extends Usuario {
     }
 
     public String toString() {
-        return "Nome: " + getName() + "\nCPF: " + getCPF() +
-        "\nEspecialidade do tratamento: " + serviceSpecialty;
+        return "Nome: " + getName() + " CPF: " + getCPF() +
+        " Especialidade do tratamento: " + serviceSpecialty + "\n";
     }
 }

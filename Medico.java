@@ -12,7 +12,7 @@ public class Medico extends Usuario{
     }
 
     public String toString() {
-        return "Nome: "+getName() + "\nCPF: "+getCPF() +"\nCRM: "+CRM
-                +"\nSalário: "+salary + "\nEspecialidade: "+especiality;
+        return "Nome: "+getName() + " CPF: "+getCPF() +" CRM: "+CRM
+                +" Salário: "+salary + " Especialidade: "+especiality;
     }
 }
