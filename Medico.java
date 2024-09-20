@@ -1,7 +1,7 @@
 public class Medico extends Usuario{
-    private String CRM;             //CRM
+    private String CRM;              //CRM
     private double salary;           //Salário
-    private String especiality;     //Especialidade
+    private String especiality;      //Especialidade
 
 
     public Medico(String name, String CPF, String CRM, double salary, String especiality) {
