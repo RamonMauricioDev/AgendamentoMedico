@@ -23,6 +23,20 @@ public class Main {
         System.out.print("CPF do paciente: ");
         long CPF = scanner.nextLong();
 
+        if(String.valueOf(CPF).length() != 11){
+            System.out.println("Algo deu errado, um cpf deve haver 11 digitos, lembre-se de não usar espaço ou , . etc...");
+            while (true){
+                System.out.print("CPF do paciente: ");
+                CPF = scanner.nextLong();
+
+                if(String.valueOf(CPF).length() != 11) {
+                    System.out.println("Algo deu errado, um cpf deve haver 11 digitos, lembre-se de não usar espaço ou , . etc...");
+                } else {
+                    break;
+                }
+            }
+        }
+
         scanner.nextLine();
 
         System.out.print("Especialidade do tratamento: ");
@@ -30,6 +44,21 @@ public class Main {
 
         System.out.print("Cartão do sus: ");
         long cardSus = scanner.nextLong();
+
+        System.out.println(String.valueOf(cardSus).length());
+        if(String.valueOf(cardSus).length() != 15){
+            System.out.println("Algo deu errado, um cartão sus deve haver 15 digitos, lembre-se de não usar espaço ou , . etc...");
+            while (true){
+                System.out.print("Cartão Sus do paciente: ");
+                cardSus = scanner.nextLong();
+
+                if(String.valueOf(CPF).length() != 15) {
+                    System.out.println("Algo deu errado, um cartão sus deve haver 15 digitos, lembre-se de não usar espaço ou , . etc...");
+                } else {
+                    break;
+                }
+            }
+        }
 
         return new Paciente(name, CPF, treatmentEspeciality, cardSus);
     }
@@ -42,6 +71,20 @@ public class Main {
 
         System.out.print("CPF do médico: ");
         long CPF = scanner.nextLong();
+
+        if(String.valueOf(CPF).length() != 11){
+            System.out.println("Algo deu errado, um cpf deve haver 11 digitos, lembre-se de não usar espaço ou , . etc...");
+            while (true){
+                System.out.print("CPF do paciente: ");
+                CPF = scanner.nextLong();
+
+                if(String.valueOf(CPF).length() != 11) {
+                    System.out.println("Algo deu errado, um cpf deve haver 11 digitos, lembre-se de não usar espaço ou , . etc...");
+                } else {
+                    break;
+                }
+            }
+        }
 
         scanner.nextLine();
 
