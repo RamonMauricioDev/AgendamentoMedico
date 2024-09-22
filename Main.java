@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class Main {
 
@@ -17,6 +16,7 @@ public class Main {
 
         System.out.print("Nome do paciente: ");
         String name = scanner.nextLine();
+        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 
         System.out.print("CPF do paciente: ");
         long CPF = scanner.nextLong();
@@ -55,6 +55,7 @@ public class Main {
 
         System.out.print("Nome do médico: ");
         String name = scanner.nextLine();
+        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 
         System.out.print("CPF do médico: ");
         long CPF = scanner.nextLong();
@@ -83,18 +84,17 @@ public class Main {
         return new Medico(name, CPF, CRM, salary, medicEspeciality);
     }
 
-    public static void makeAppointment(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList, ArrayList<Integer> appointmentList) {
+    public static void makeAppointment(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList, ArrayList<String> appointmentList) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n-----Pacientes-----\n");
+        System.out.println("\n-----" + BLUE + "Pacientes" + RESET + "-----\n");
         for(var i = 0; i < pacientList.size(); i++){
-            System.out.println(pacientList.get(i).getName() + " | " + "necessidade especial: " + pacientList.get(i).getServiceSpecialty());
+            System.out.println( YELLOW + pacientList.get(i).getName() + RESET + " | " + "necessidade especial: " + RED + pacientList.get(i).getServiceSpecialty() + RESET);
         }
-        System.out.println("\n----------------");
 
-        System.out.println("\n-----Medicos-----\n");
+        System.out.println("\n-----" + BLUE + "Medicos" + RESET + "-----\n");
         for(var i = 0; i < medicList.size(); i++){
-            System.out.println(medicList.get(i).getName() + " | " + "especialidade: " + medicList.get(i).getEspeciality());
+            System.out.println(YELLOW + medicList.get(i).getName() + RESET + " | " + "especialidade: " + RED + medicList.get(i).getEspeciality() + RESET);
         }
         System.out.println("\n----------------\n");
 
@@ -102,9 +102,11 @@ public class Main {
 
         while (true){
             String pacientName = scanner.nextLine();
+            pacientName = pacientName.substring(0, 1).toUpperCase() + pacientName.substring(1).toLowerCase();
 
+            String finalPacientName = pacientName;
             Paciente foundPacient = pacientList.stream()
-                    .filter(person -> person.getName().equals(pacientName))
+                    .filter(person -> person.getName().equals(finalPacientName))
                     .findFirst()
                     .orElse(null);
 
@@ -115,9 +117,10 @@ public class Main {
                         .orElse(null);
 
                 if (foundEspecialist != null) {
-                    System.out.println("Você marcou a consulta do paciente " + foundPacient.getName() +
-                            " com o médico " + foundEspecialist.getName() + "\n");
+                    System.out.println("Você marcou a consulta do paciente " + YELLOW + foundPacient.getName() + RESET +
+                            " com o médico " + YELLOW + foundEspecialist.getName() + RESET +"\n");
 
+                    appointmentList.add(YELLOW + foundPacient.getName() + RESET + " tem uma consulta com " + YELLOW + foundEspecialist.getName() + RESET);
                     initTerminal(pacientList, medicList, appointmentList);
                 } else {
                     System.out.println("Um médico especialista não foi encontrado, espere na fila do sus :( \n");
@@ -129,13 +132,14 @@ public class Main {
         }
     }
 
-    public static void initTerminal(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList, ArrayList<Integer> appointmentList) {
+    public static void initTerminal(ArrayList<Paciente> pacientList, ArrayList<Medico> medicList, ArrayList<String> appointmentList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Adicionar um novo paciente no banco de dados: " + RED + "1" + RESET);
-        System.out.println("Adicionar um novo médico no banco de dados: " + RED + "2" + RESET);
-        System.out.println("Marcar uma consulta: " + RED + "3" + RESET);
-        System.out.println("Ver lista de pacientes do banco de dados: " + RED + "8" + RESET);
-        System.out.println("Ver lista de médicos do banco de dados: " + RED + "9" + RESET);
+        System.out.println("Adicionar um novo paciente no banco de dados: " + GREEN + "1" + RESET);
+        System.out.println("Adicionar um novo médico no banco de dados: " + GREEN + "2" + RESET);
+        System.out.println("Marcar uma consulta: " + GREEN + "3" + RESET);
+        System.out.println("Ver lista de consultas do banco de dados: " + GREEN + "7" + RESET);
+        System.out.println("Ver lista de pacientes do banco de dados: " + GREEN + "8" + RESET);
+        System.out.println("Ver lista de médicos do banco de dados: " + GREEN + "9" + RESET);
         System.out.print("Digite o numero do comando correspondente: ");
         int command = scanner.nextInt();
 
@@ -151,16 +155,31 @@ public class Main {
                         RESET + " adicionado com " + GREEN + "Sucesso" + RESET + "--------\n");
                 break;
             case 3:
-                makeAppointment(pacientList, medicList, appointmentList);
+                if (pacientList.size() > 0 && medicList.size() > 0) {
+                    makeAppointment(pacientList, medicList, appointmentList);
+                } else {
+                    System.out.println("\nQuantidade médicos ou pacientes" + RED + " insuficiente " + RESET + "para marcar uma consulta.\n");
+                }
+                break;
+            case 7:
+                System.out.println("\n--------List de consulta--------\n");
+                for (var i = 0; i < appointmentList.size(); i++){
+                    System.out.println(appointmentList.get(i));
+                }
+                System.out.println("\n--------------------------------\n");
                 break;
             case 8:
                 System.out.println("\n--------Lista de pacientes--------\n");
-                System.out.println(pacientList);
+                for (var i = 0; i < pacientList.size(); i++){
+                    System.out.println(pacientList.get(i));
+                }
                 System.out.println("\n--------------------------------\n");
                 break;
             case 9:
                 System.out.println("\n--------Lista de medicos--------\n");
-                System.out.println(medicList);
+                for (var i = 0; i < medicList.size(); i++){
+                    System.out.println(medicList.get(i));
+                }
                 System.out.println("\n--------------------------------\n");
                 break;
         }
@@ -171,10 +190,10 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Paciente> pacientList = new ArrayList<>();    //Lista de pacientes
         ArrayList<Medico> medicList = new ArrayList<>();        //Lista de médicos
-        ArrayList<Integer> appointmentList = new ArrayList<>();
+        ArrayList<String> appointmentList = new ArrayList<>();
 
-        pacientList.add(new Paciente("Ramon", 15515551400L, "Caxumba", 892002066876560L));
-        medicList.add(new Medico("Paulo", 15582428300L, "Nada", 24000, "Caxumba"));
+        //pacientList.add(new Paciente("Ramon", 15515551400L, "Caxumba", 892002066876560L));
+        //medicList.add(new Medico("Paulo", 15582428300L, "Nada", 24000, "Caxumba"));
 
         //Terminal
         System.out.println("-----Bem vindo ao terminal de " + BLUE + "Agendamento médico " + YELLOW + "v1.0.0" + RESET + "-----");
