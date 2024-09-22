@@ -11,6 +11,10 @@ public class Medico extends Usuario{
         this.especiality = especiality;
     }
 
+    public String getEspeciality() {
+        return especiality;
+    }
+
     public String toString() {
         return "Nome: "+getName() + " CPF: "+getCPF() +" CRM: "+CRM
                 +" Salário: "+salary + " Especialidade: "+especiality;

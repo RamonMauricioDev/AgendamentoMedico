@@ -8,6 +8,10 @@ public class Paciente extends Usuario {
         this.cardSus = cardSus;
     }
 
+    public String getServiceSpecialty() {
+        return serviceSpecialty;
+    }
+
     public String toString() {
         return "Nome: " + getName() + " CPF: " + getCPF() +
         " Especialidade do tratamento: " + serviceSpecialty + " Cartão sus: " + cardSus;
